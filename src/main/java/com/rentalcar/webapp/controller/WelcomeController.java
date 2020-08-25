@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class WelcomeController {
 	
-	@RequestMapping(value="welcome")
-	public String getWelcome(Model model)
-	{
-		model.addAttribute("intestazione", "Rental Car");
-		model.addAttribute("saluti", "xxxxxxx");
-
-		return "welcome";
-	}
+//	@RequestMapping(value="")
+//	public String getWelcome(Model model)
+//	{
+//		model.addAttribute("intestazione", "Rental Car");
+//		model.addAttribute("saluti", "xxxxxxx");
+//
+//		return "welcome";
+//	}
 		
-	@RequestMapping(value="index")
+	@RequestMapping(value="")
 	public String getIndex(Model model)
 	{
 		model.addAttribute("intestazione", "Rental Car");
