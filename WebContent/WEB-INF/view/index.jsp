@@ -21,16 +21,16 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="start"> Home <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="home"> Home <span class="sr-only">(current)</span></a>
 					</li>
 				
 					<li class="nav-item">
-						<a class="nav-link" href="listaautomobili">Catalogo</a>
+						<a class="nav-link" href="carslist">Catalogo</a>
 					</li>
 				</ul>
 				
 				<a class="nav-link" href="login">Sing in</a></li>
-				<a class="nav-link" href="registrautente">Sign up</a></li>
+				<a class="nav-link" href="userregistration">Sign up</a></li>
 				<c:if test="${sessionScope.currentUser !=null }">
 					<a class="nav-link" href="areapersonale">Area Personale</a>
 					<a class="nav-link" href="logout">Logout</a>

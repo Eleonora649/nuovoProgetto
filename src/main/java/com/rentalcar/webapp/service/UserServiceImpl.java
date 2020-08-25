@@ -13,7 +13,6 @@ import com.rentalcar.webapp.entities.User;
 @Transactional
 public class UserServiceImpl implements UserService
 {
-
 	@Autowired
 	private UserDao userDao;
 	
@@ -42,7 +41,6 @@ public class UserServiceImpl implements UserService
 	public void deleteUser(int id) 
 	{
 		userDao.deleteUser(id);
-		
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.rentalcar.configuration;
+package com.rentalcar.webapp.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

@@ -1,12 +1,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
     <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-        <html>
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-            <title>Registration</title>
-        </head>
-        <body>
-            <form:form id="regForm" modelAttribute="user" action="registerProcess" method="post">
+  <!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="ISO-8859-1">
+			<title>Rental Car</title>
+
+			<!-- Bootstrap CSS -->
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+			<link type="text/css" rel="stylesheet" href="css/style.css">
+		</head>
+		<body>
+            <form:form modelAttribute="user" method="post">
+               <a href="home.jsp">Home</a>
                 <table align="center">
                     <tr>
                         <td>
@@ -26,18 +34,21 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="dateofbirth">Date Of Birth</form:label>
+                          	<form:label path="dateOfBirth">Date Of Birth</form:label> 
                         </td>
                         <td>
-                            <form:input path="dateofbirth" name="dateofbirth" id="dateofbirth" />
+                        
+                        	<form:input path="dateOfBirth" name="dateofbirth" id="dateofbirth" /> 
+                       
+                            
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="mail">Mail</form:label>
+                            <form:label path="email">Mail</form:label>
                         </td>
                         <td>
-                            <form:input path="mail" name="mail" id="mail" />
+                            <form:input path="email" name="mail" id="mail" />
                         </td>
                     </tr>
                     <tr>
@@ -56,12 +67,8 @@
                         </td>
                     </tr>
                     <tr></tr>
-                    <tr>
-                        <td></td>
-                        <td><a href="home.jsp">Home</a>
-                        </td>
-                    </tr>
                 </table>
+                 
             </form:form>
         </body>
         </html>

@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name ="user")
+@Table(name="user")
 public class User implements Serializable
 {
 	private static final long serialVersionUID = 1;
@@ -50,7 +50,7 @@ public class User implements Serializable
 	private List<Role> roles;
 	
 	public User() {
-		super();
+
 	}
 
 	public int getIdUser() {
