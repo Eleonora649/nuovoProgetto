@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rentalcar.webapp.entities.User;
 import com.rentalcar.webapp.service.UserService;
 
-@Component
 @Controller
 @RequestMapping("/")
 public class UserController 
@@ -49,14 +48,14 @@ public class UserController
     	User user = userService.findUserById(id);
     	model.addAttribute("user", user);
     	model.addAttribute("update", true);
-    	return "registration-form";
+    	return "update-user";
     }
     
     @RequestMapping(value = {"update-{id}-user"}, method = RequestMethod.POST)
     public String updateUser(@Valid User user, BindingResult result, ModelMap mode, @PathVariable int id)
     {
     	if (result.hasErrors()) {
-    		return "registration-form";
+    		return "update-user";
     	}
     	userService.updateUser(user);
     	return "success";

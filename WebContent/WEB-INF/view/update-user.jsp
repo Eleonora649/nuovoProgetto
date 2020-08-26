@@ -1,11 +1,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-	
-	<jsp:include page="header.jsp"/>
-	<jsp:include page="index.jsp"/>
 
-<br>    
-		<body>
+  <jsp:include page="header.jsp"/>
+  <jsp:include page="index.jsp"/>
+  
+  <br>
             <form:form modelAttribute="user" method="post">
               <div class="form-group">
                 <table align="center">
@@ -53,7 +52,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <form:button id="register" name="register" class="btn btn-primary">Register</form:button>
+                            <form:button id="update" name="update" class="btn btn-primary">Update</form:button>
                         </td>
                     </tr>
                     <tr></tr>
