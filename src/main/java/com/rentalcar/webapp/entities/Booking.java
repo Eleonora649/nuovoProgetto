@@ -32,7 +32,7 @@ public class Booking implements Serializable
 
 	@ManyToOne
 	@JoinColumn(name="id_user")
-	private User user;
+	private UserEntity user;
 
 	@ManyToOne
 	@JoinColumn(name="id_car")
@@ -66,11 +66,11 @@ public class Booking implements Serializable
 		this.endOfBooking = endOfBooking;
 	}
 
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 

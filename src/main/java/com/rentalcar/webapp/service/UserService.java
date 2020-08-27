@@ -2,18 +2,21 @@ package com.rentalcar.webapp.service;
 
 import java.util.List;
 
-import com.rentalcar.webapp.entities.User;
+import com.rentalcar.webapp.entities.UserEntity;
 
 public interface UserService {
 
-    void saveUser(User user);
+    void saveUser(UserEntity user);
     
-    void updateUser(User user);
+    void updateUser(UserEntity user);
     
     void deleteUser(int id);
     
-    User findUserById(int id);
+    UserEntity findUserById(int id);
     
-    List<User> findAllUsers(); 
-     
+    List<UserEntity> findAllUsers(); 
+
+//    UserEntity findByEmail(String email);
+
+    
 }

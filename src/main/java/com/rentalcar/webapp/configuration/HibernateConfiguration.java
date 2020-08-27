@@ -18,7 +18,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @Configuration
 @EnableTransactionManagement //abilita la gestione delle transazioni
-@ComponentScan({"com.rentalcar.webapp"}) //selezionare il package dove saranno residenti le classi di configurazioni
+@ComponentScan({"com.rentalcar.webapp.configuration"}) //selezionare il package dove saranno residenti le classi di configurazioni
 @PropertySource(value = {"classpath:application.properties"}) //serve alla calsseJdbcConf per accedere ad un file di configurazione Application.properties
 public class HibernateConfiguration 
 {

@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class WelcomeController {
 	
-//	@RequestMapping(value="")
-//	public String getWelcome(Model model)
-//	{
-//		model.addAttribute("intestazione", "Rental Car");
-//		model.addAttribute("saluti", "Benvenuto");
-//
-//		return "welcome";
-//	}
+	@RequestMapping(value="home")
+	public String getWelcome(Model model)
+	{
+		model.addAttribute("intestazione", "Rental Car");
+		model.addAttribute("saluti", "Benvenuto");
+
+		return "index";
+	}
 		
 	@RequestMapping(value="")
 	public String getIndex(Model model)

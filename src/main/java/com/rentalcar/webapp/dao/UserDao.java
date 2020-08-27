@@ -2,18 +2,21 @@ package com.rentalcar.webapp.dao;
 
 import java.util.List;
 
-import com.rentalcar.webapp.entities.User;
+import com.rentalcar.webapp.entities.UserEntity;
 
 public interface UserDao 
 {
-	void saveUser(User user);
+	void saveUser(UserEntity user);
 	
-	void update(User user);
+	UserEntity update(UserEntity user);
 	
 	void deleteUser(int id);
 	
-	User findUserById(int id);
+	UserEntity findUserById(int id);
 	
-	List<User> findAllUsers();
+	List<UserEntity> findAllUsers();
 	
+//	UserEntity findByEmail(String email);
+
+
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rentalcar.webapp.dao.UserDao;
-import com.rentalcar.webapp.entities.User;
+import com.rentalcar.webapp.entities.UserEntity;
 
 @Service("userService")
 @Transactional
@@ -17,15 +17,15 @@ public class UserServiceImpl implements UserService
 	private UserDao userDao;
 	
 	@Override
-	public void saveUser(User user) 
+	public void saveUser(UserEntity user) 
 	{
 		userDao.saveUser(user);
 	}
 
 	@Override
-	public void updateUser(User user) 
+	public void updateUser(UserEntity user) 
 	{
-		User entity = userDao.findUserById(user.getIdUser());
+		UserEntity entity = userDao.findUserById(user.getIdUser());
         if(entity!=null)
         {
             entity.setName(user.getName());
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService
             entity.setEmail(user.getEmail());
             entity.setPassword(user.getPassword());
         }
-		
+		userDao.update(entity);
 	}
 
 	@Override
@@ -44,15 +44,21 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public User findUserById(int id) 
+	public UserEntity findUserById(int id) 
 	{
 		return userDao.findUserById(id);
 	}
 
 	@Override
-	public List<User> findAllUsers() 
+	public List<UserEntity> findAllUsers() 
 	{
 		return userDao.findAllUsers();
 	}
-	
+
+//	@Override
+//	public UserEntity findByEmail(String email) {
+//		UserEntity user = userDao.findByEmail(email);
+//		return user;
+//	}
+//	
 }

@@ -3,6 +3,7 @@ package com.rentalcar.webapp.dao;
 import java.io.Serializable;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDao <PK extends Serializable, T>
 {
-
 	private final Class<T> persistentClass;
 	
 	@SuppressWarnings("unchecked")
@@ -29,9 +29,9 @@ public abstract class AbstractDao <PK extends Serializable, T>
     }
  
     @SuppressWarnings("unchecked")
-    public T getByKey(PK key) 
+    public T getByKey(final long id) 
     {
-        return (T) getSession().get(persistentClass, key);
+        return (T) getSession().get(persistentClass, id);
     }
  
     public void persist(T entity) 
@@ -39,16 +39,29 @@ public abstract class AbstractDao <PK extends Serializable, T>
         getSession().persist(entity);
     }
     
-    public void update(T entity) 
+    @SuppressWarnings("unchecked")
+    public T update(final T entity) 
     {
-    	
+    	return (T) getSession().merge(entity);
     }
  
     public void delete(T entity) 
     {
         getSession().delete(entity);
     }
-     
+    
+    public void deleteById(final long id)
+    {
+    	final T entity = getByKey(id);
+    	delete(entity);
+    }
+    
+	@SuppressWarnings("unchecked")
+    public List<T> findAll()
+    {
+    	return getSession().createQuery("from" + persistentClass.getName()).getResultList();
+    }
+    
 	protected Criteria createEntityCriteria()
 	{
         return getSession().createCriteria(persistentClass);

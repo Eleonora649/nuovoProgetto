@@ -1,13 +1,18 @@
 package com.rentalcar.webapp.entities;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="role")
@@ -22,11 +27,11 @@ public class Role implements Serializable
 	@Column(name="description")
 	private String description;
 
-	@Column(name="name_rolr")
+	@Column(name="name_role")
 	private String nameRole;
 
-	@ManyToMany
-	private List<User> users;
+	@ManyToMany(mappedBy = "roles")
+	private Set<UserEntity> users = new HashSet<>();
 
 	public Role() {
 		super();
@@ -56,11 +61,11 @@ public class Role implements Serializable
 		this.nameRole = nameRole;
 	}
 
-	public List<User> getUsers() {
+	public Set<UserEntity> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<User> users) {
+	public void setUsers(Set<UserEntity> users) {
 		this.users = users;
 	}
 	

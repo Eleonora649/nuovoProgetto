@@ -3,25 +3,24 @@ package com.rentalcar.webapp.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-import com.rentalcar.webapp.entities.User;
+import com.rentalcar.webapp.entities.UserEntity;
 
 @Repository("userDao")
-public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao
+public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements UserDao
 {
-
 	@Override
-	public void saveUser(User user) 
+	public void saveUser(UserEntity user) 
 	{
 		persist(user);
 	}
 
 	@Override
-	public void update(User user) 
+	public UserEntity update(UserEntity user) 
 	{
-		// TODO Auto-generated method stub
+		return update(user);
 	}
 
 	@Override
@@ -33,22 +32,37 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao
 	}
 
 	@Override
-	public User findUserById(int id) 
+	public UserEntity findUserById(int id) 
 	{
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("id", id));
-		return (User) criteria.uniqueResult();
+		return (UserEntity) criteria.uniqueResult();
 	}
 
 	@Override
-	public List<User> findAllUsers() 
+	public List<UserEntity> findAllUsers() 
 	{
 		Criteria criteria = createEntityCriteria();
-		return (List<User>) criteria.list();
+		return (List<UserEntity>) criteria.list();
 	}
 
-	public User findById(int id) {
+	public UserEntity findById(int id) 
+	{
         return getByKey(id);
     }
 
+//	@Override
+//	public UserEntity findByEmail(String email) 
+//	{
+//		logger.info("email : {}", email);
+//		Query query = getSession().createQuery("from User where email = :email");
+//		query.setParameter("email",email);
+//		UserEntity user = (UserEntity) query.getSingleResult();
+//		if(user!=null)
+//		{
+//			Hibernate.initialize(user.getRoles());
+//		}
+//		
+//		return user;	
+//	}
 }

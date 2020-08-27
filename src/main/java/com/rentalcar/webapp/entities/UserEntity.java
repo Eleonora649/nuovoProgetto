@@ -2,8 +2,11 @@ package com.rentalcar.webapp.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +20,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="user")
-public class User implements Serializable
+public class UserEntity implements Serializable
 {
 	private static final long serialVersionUID = 1;
 	
@@ -44,12 +47,13 @@ public class User implements Serializable
 	@OneToMany(mappedBy="user")
 	private List<Booking> booking;
 
-	@ManyToMany
-	@JoinTable(name="user_role", joinColumns={@JoinColumn(name="id_user")}, 
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name="user_role", 
+				joinColumns={@JoinColumn(name="id_user")}, 
 				inverseJoinColumns={@JoinColumn(name="id_role")})
-	private List<Role> roles;
+	private Set<Role> roles = new HashSet<>();
 	
-	public User() {
+	public UserEntity() {
 
 	}
 
@@ -100,6 +104,21 @@ public class User implements Serializable
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	
+
+	public List<Booking> getBooking() {
+		return booking;
+	}
+
+	public void setBooking(List<Booking> booking) {
+		this.booking = booking;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	
 }
