@@ -10,21 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class LoginController 
 {
-	
 	@RequestMapping(value = "/loginform", method = RequestMethod.GET)
-	public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,
-								@RequestParam(value = "logout",	required = false) String logout) {
-		
+	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
+							@RequestParam(value = "logout", required = false) String logout) {
+ 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
-			model.addObject("error", "Invalid Credentials provided.");
+			model.addObject("error", "Utente o password non validi!");
 		}
-
+ 
 		if (logout != null) {
-			model.addObject("message", "Logged out from JournalDEV successfully.");
+			model.addObject("message", "Logour eseguito con successo");
 		}
-
 		model.setViewName("login");
+ 
 		return model;
 	}
 	
@@ -41,5 +40,4 @@ public class LoginController
 		model.setViewName("adminPage");
 		return model;
 	}
-	
 }

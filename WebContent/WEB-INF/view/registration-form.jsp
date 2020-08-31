@@ -10,31 +10,24 @@
 			<table align="center">
 				<tr>
 					<td><form:label path="name">Name</form:label></td>
-					<td><form:input path="name" name="name" id="name" class="form-control" /></td>
+					<td><form:input type="text" path="name" name="name" id="name" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="surname">Surname</form:label></td>
-					<td><form:input path="surname" name="surname" id="surname" class="form-control" /></td>
+					<td><form:input type="text" path="surname" name="surname" id="surname" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="dateOfBirth">Date Of Birth</form:label>
-					</td>
-					<td><form:input path="dateOfBirth" name="dateofbirth" id="dateofbirth" class="form-control" /></td>
+					</td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.dateOfBirth}"/>
+					<td><form:input type="date" path="dateOfBirth" name="dateOfBirth" id="dateOfBirth" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="email">Mail</form:label></td> 		
-					<td><form:input path="email" name="mail" id="mail" class="form-control" /></td>
+					<td><form:input type="email" path="email" name="mail" id="mail" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="password">Password</form:label></td>
 					<td><form:password path="password" name="password" id="password" class="form-control" /></td>
-				</tr>
-
-				<tr>
-					<td><label>Role:</label> &nbsp; 
-						<form:radiobutton path="roles" name="user" value="1" /> User &nbsp;
-						<form:radiobutton path="roles" name="admin" value="1" /> Admin
-					</td>
 				</tr>
 				<tr>
 					<td></td>

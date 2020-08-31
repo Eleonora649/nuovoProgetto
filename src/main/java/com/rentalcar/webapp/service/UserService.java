@@ -14,9 +14,8 @@ public interface UserService {
     
     UserEntity findUserById(int id);
     
-    List<UserEntity> findAllUsers(); 
+    List<UserEntity> findAllUsers();
 
-//    UserEntity findByEmail(String email);
+	UserEntity authenticate(String email, String password); 
 
-    
 }

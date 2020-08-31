@@ -21,10 +21,11 @@
 				
 				<a class="nav-link" href="loginform">Sing in</a></li>
 				<a class="nav-link" href="userregistration">Sign up</a></li>
-				<c:if test="${sessionScope.currentUser !=null }">
+				
+				<%-- <c:if test="${sessionScope.currentUser !=null }">
 					<a class="nav-link" href="areapersonale">Area Personale</a>
 					<a class="nav-link" href="logout">Logout</a>
-				</c:if>
+				</c:if> --%>
 			</div>
 			</nav>
 			
@@ -32,6 +33,6 @@
 <form id="logout" action="${logoutUrl}" method="post" >
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
-<c:if test="${pageContext.request.userPrincipal.name != null}">
+<%-- <c:if test="${pageContext.request.userPrincipal.name != null}">
 	<a href="javascript:document.getElementById('logout').submit()">Logout</a>
-</c:if>
+</c:if> --%>

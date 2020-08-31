@@ -1,12 +1,16 @@
 package com.rentalcar.webapp.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rentalcar.webapp.dao.RoleDao;
 import com.rentalcar.webapp.dao.UserDao;
+import com.rentalcar.webapp.entities.Role;
 import com.rentalcar.webapp.entities.UserEntity;
 
 @Service("userService")
@@ -16,10 +20,18 @@ public class UserServiceImpl implements UserService
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	private RoleDao roleDao;
+	
 	@Override
 	public void saveUser(UserEntity user) 
 	{
-		userDao.saveUser(user);
+//		UserEntity us = new UserEntity();
+    	Role role = roleDao.findByIdRole(2);
+    	Set<Role> roles = new HashSet<Role>();
+    	roles.add(role);
+    	user.setRoles(roles);
+    	userDao.saveUser(user);
 	}
 
 	@Override
@@ -55,10 +67,14 @@ public class UserServiceImpl implements UserService
 		return userDao.findAllUsers();
 	}
 
-//	@Override
-//	public UserEntity findByEmail(String email) {
-//		UserEntity user = userDao.findByEmail(email);
-//		return user;
-//	}
-//	
+	@Override
+	public UserEntity authenticate(String email, String password) {
+		UserEntity user = userDao.findByEmail(email);
+
+		if (!(user != null && user.getEmail().equals(email) 
+				&& user.getPassword().equals(password))) {
+			user = null;
+		}
+		return user;
+	}
 }

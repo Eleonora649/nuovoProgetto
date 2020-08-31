@@ -3,6 +3,7 @@ package com.rentalcar.webapp.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.query.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -51,18 +52,16 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
         return getByKey(id);
     }
 
-//	@Override
-//	public UserEntity findByEmail(String email) 
-//	{
-//		logger.info("email : {}", email);
-//		Query query = getSession().createQuery("from User where email = :email");
-//		query.setParameter("email",email);
-//		UserEntity user = (UserEntity) query.getSingleResult();
-//		if(user!=null)
-//		{
-//			Hibernate.initialize(user.getRoles());
-//		}
-//		
-//		return user;	
-//	}
+	@Override
+	public UserEntity findByEmail(String email) 
+	{
+		UserEntity user = null;
+		user = (UserEntity) getSession().createQuery("SELECT email FROM User WHERE email=:email").setParameter("email", email).uniqueResult();//.getSingleResult();
+		
+		if(user!=null) 
+		{
+			Hibernate.initialize(user.getRoles());
+		}
+		return user;	
+	}
 }

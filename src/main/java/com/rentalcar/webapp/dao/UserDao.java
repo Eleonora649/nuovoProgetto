@@ -16,7 +16,7 @@ public interface UserDao
 	
 	List<UserEntity> findAllUsers();
 	
-//	UserEntity findByEmail(String email);
+	UserEntity findByEmail(String email);
 
 
 }

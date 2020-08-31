@@ -2,13 +2,15 @@ package com.rentalcar.webapp.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,13 +20,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="user")
 public class UserEntity implements Serializable
 {
 	private static final long serialVersionUID = 1;
 	
-	@Id 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_user")
 	private int idUser;
 	
@@ -42,19 +47,30 @@ public class UserEntity implements Serializable
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_of_birth")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	
 	@OneToMany(mappedBy="user")
 	private List<Booking> booking;
 
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(targetEntity=Role.class,
+            cascade=CascadeType.ALL) //(cascade = {CascadeType.ALL}) //(fetch = FetchType.LAZY) -> l’oggetto di relazione sarà caricato al momento dell’invocazione del metodo sul quale è applicata l’annotation
 	@JoinTable(name="user_role", 
 				joinColumns={@JoinColumn(name="id_user")}, 
 				inverseJoinColumns={@JoinColumn(name="id_role")})
-	private Set<Role> roles = new HashSet<>();
+	private Set<Role> roles; 
 	
 	public UserEntity() {
 
+	}
+	
+	public UserEntity(String name, String surname, Date birth, String email, String password)
+	{
+		this.name=name;
+		this.surname=surname;
+		this.dateOfBirth=birth;
+		this.email=email;
+		this.password=password;
 	}
 
 	public int getIdUser() {

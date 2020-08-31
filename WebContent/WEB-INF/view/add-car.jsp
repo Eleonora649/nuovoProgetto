@@ -36,13 +36,13 @@
 				<tr>
 					<td>
 						<form:label path="category"> City Car </form:label> 
-						<form:radiobutton path="category" name="category" value="1" />
+						<form:radiobutton path="category" name="category" id="category" value="1" />
 					
 						<form:label path="category"> Suv </form:label> 
-						<form:radiobutton path="category" name="category" value="2" />
+						<form:radiobutton path="category" name="category" id="category" value="2" />
 					
 						<form:label path="category"> Furgone </form:label> 
-						<form:radiobutton path="category" name="category" value="3" />
+						<form:radiobutton path="category" name="category" id="category" value="3" />
 					</td>
 				</tr>
 				<tr>
