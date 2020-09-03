@@ -16,9 +16,9 @@ public interface UserService {
     
     List<UserEntity> findAllUsers();
 
-	UserEntity authenticate(String email, String password); 
+//	boolean checkLogin(String email,String password);
 
-	boolean checkLogin(String email,String password);
+    UserEntity findUserByEmail(String email);
 
-	UserEntity findUserByEmail(String email);
+	boolean authenticate(String email, String password);
 }

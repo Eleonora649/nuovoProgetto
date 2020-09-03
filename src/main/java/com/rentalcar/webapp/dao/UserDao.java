@@ -2,7 +2,6 @@ package com.rentalcar.webapp.dao;
 
 import java.util.List;
 
-import com.rentalcar.webapp.entities.Login;
 import com.rentalcar.webapp.entities.UserEntity;
 
 public interface UserDao 
@@ -21,6 +20,8 @@ public interface UserDao
 
 	boolean checkLogin(String email, String password);
 
-	UserEntity validateUser(Login login);
+//	boolean checkLogin(String email, String password);
+
+//	UserEntity validateUser(Login login);
 
 }

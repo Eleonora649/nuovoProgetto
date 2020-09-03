@@ -2,6 +2,8 @@ package com.rentalcar.webapp.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.rentalcar.webapp.entities.Role;
 
 @Repository("roleDao")
+@Transactional
 public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao 
 {
 	@Override

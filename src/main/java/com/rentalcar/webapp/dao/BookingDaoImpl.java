@@ -3,6 +3,8 @@ package com.rentalcar.webapp.dao;
 import java.sql.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
@@ -10,9 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import com.rentalcar.webapp.entities.Booking;
 import com.rentalcar.webapp.entities.Car;
-import com.rentalcar.webapp.entities.UserEntity;
 
 @Repository("bookingDao")
+@Transactional
 public class BookingDaoImpl extends AbstractDao<Integer, Booking> implements BookingDao
 {
 

@@ -1,48 +1,37 @@
 package com.rentalcar.webapp.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rentalcar.webapp.entities.Login;
-import com.rentalcar.webapp.entities.UserEntity;
 import com.rentalcar.webapp.service.UserService;
 
 @Controller
 @RequestMapping("/")
 public class LoginController 
 {
-	@Autowired
+	  @Autowired
 	  UserService userService;
-	
+
 	  @RequestMapping(value = "/loginform", method = RequestMethod.GET)
-	  public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) 
+	  public ModelAndView showLogin() 
 	  {
-	    ModelAndView mav = new ModelAndView("login");
-	    mav.addObject("login", new Login());
-	    return mav;
+	    return new ModelAndView("login");
 	  }
 	  
 	  @RequestMapping(value = "/loginform", method = RequestMethod.POST)
-	  public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response,
-			  					@ModelAttribute("login") Login login, @PathVariable String email) 
+	  public ModelAndView loginProcess(@RequestParam("email") String email, @RequestParam("password") String password) 
 	  {
 	    ModelAndView mav = new ModelAndView();
-	    UserEntity user = userService.findUserByEmail(email);
+	    boolean log = userService.authenticate(email, password);
 	    
-	    if (null != user) 
+	    if (log != false) 
 	    {
 		    mav.setViewName("welcome");
-		    mav.addObject("email", user.getEmail());
+		    mav.addObject("email", email);
 		} 
 	    else 
 	    {

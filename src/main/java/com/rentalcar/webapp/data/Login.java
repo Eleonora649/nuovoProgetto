@@ -1,4 +1,4 @@
-package com.rentalcar.webapp.entities;
+package com.rentalcar.webapp.data;
 
 public class Login 
 {

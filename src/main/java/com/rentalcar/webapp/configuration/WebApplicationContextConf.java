@@ -36,9 +36,4 @@ public class WebApplicationContextConf implements WebMvcConfigurer
 		return resource;
 	}
 	
-//	@Override
-//	public void addFormatters(FormatterRegistry registry)
-//	{
-//	    registry.addConverter(new FacConverter());
-//	}
 }

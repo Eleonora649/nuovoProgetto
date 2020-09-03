@@ -2,15 +2,17 @@ package com.rentalcar.webapp.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.query.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.rentalcar.webapp.entities.Car;
-import com.rentalcar.webapp.entities.Category;
 
 @Repository("carDao")
+@Transactional
 public class CarDaoImpl extends AbstractDao<Integer, Car> implements CarDao
 {
 	@Override
@@ -28,7 +30,7 @@ public class CarDaoImpl extends AbstractDao<Integer, Car> implements CarDao
 	@Override
 	public void deleteCar(int id) 
 	{
-		Query query = getSession().createSQLQuery("delete from User where id_car=:id");
+		Query query = getSession().createSQLQuery("delete from car where id_car=:id");
 		query.setInteger("id", id);
 		query.executeUpdate();
 	}

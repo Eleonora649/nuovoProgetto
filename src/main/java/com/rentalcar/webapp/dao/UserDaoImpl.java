@@ -2,16 +2,18 @@ package com.rentalcar.webapp.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.query.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.rentalcar.webapp.entities.Login;
 import com.rentalcar.webapp.entities.UserEntity;
 
 @Repository("userDao")
+@Transactional
 public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements UserDao
 {
 	@Override
@@ -59,33 +61,24 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
 	{
 		UserEntity user = null;
 		user = (UserEntity) getSession().createQuery("SELECT email FROM User WHERE email=:email").setParameter("email", email).uniqueResult();//.getSingleResult();
-		
+		getSession().get(UserEntity.class, email);
 		if(user!=null) 
 		{
 			Hibernate.initialize(user.getRoles());
 		}
 		return user;	
 	}
-	
 	@Override
-	public boolean checkLogin(String email, String password){
-
-		boolean userFound = false;
-		Query query = getSession().createQuery("FROM User WHERE email=:email and password=:password");
-		query.setParameter(0,email);
-		query.setParameter(1,password);
-		List list = query.list();
-
-		if ((list != null) && (list.size() > 0)) {
-			userFound= true;
-		}
-		return userFound;              
-	}
-	
-	public UserEntity validateUser(Login login) 
+	public boolean checkLogin(String email, String password)
 	{
-	    UserEntity user = (UserEntity) getSession().createQuery("select * from user where email='" + login.getEmail() + "' and password='" + login.getPassword() + "'");
-	    return user;
-	    }
+		boolean check = false;
+		UserEntity user = (UserEntity) getSession().createQuery("FROM User WHERE email=:email and password=:password").getSingleResult();
+			
+		if(user!=null) {
+			check=true;
+		}
+		
+		return check;              
+	}
 
 }
