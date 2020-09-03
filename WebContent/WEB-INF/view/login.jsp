@@ -9,18 +9,20 @@
 
 	<br/><h3>Login To Enter</h3>
 
+		<c:if test="${not empty error}"><div class="alert alert-danger">${error}</div></c:if>
+		<c:if test="${not empty message}"><div class="alert alert-danger">${message}</div></c:if>
 		<form:form method="post" action="loginform" modelAttribute="user" class="form-horizontal"> 
 			<table>
 				<tr>
-					<td><form:label path="email"> Email: </form:label></td>
-					<td><form:input path="email" type="email" class="form-control"/></td>
+					<td> Email: </td>
+					<td><input name="email" type="email" class="form-control"/></td>
 				</tr>
 				<tr>
-					<td><form:label path="password"> Password: </form:label></td>
-					<td><form:input path="password" type="password" class="form-control"/></td>
+					<td> Password:</td>
+					<td><input name="password" type="password" class="form-control"/></td>
 				</tr>
 				<tr>
-					<td><form:button id="register" name="register" class="btn btn-primary">Login</form:button></td>
+					<td><button id="register" name="register" class="btn btn-primary">Login</button></td>
 				</tr>
 			</table>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

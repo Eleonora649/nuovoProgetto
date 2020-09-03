@@ -1,12 +1,16 @@
 package com.rentalcar.webapp.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rentalcar.webapp.entities.UserEntity;
 import com.rentalcar.webapp.service.UserService;
 
 @Controller
@@ -26,12 +30,12 @@ public class LoginController
 	  public ModelAndView loginProcess(@RequestParam("email") String email, @RequestParam("password") String password) 
 	  {
 	    ModelAndView mav = new ModelAndView();
-	    boolean log = userService.authenticate(email, password);
+	    UserEntity user = userService.authenticate(email, password);
 	    
-	    if (log != false) 
+	    if (user != null) 
 	    {
-		    mav.setViewName("welcome");
-		    mav.addObject("email", email);
+		    mav.setViewName("index");
+//		    mav.addObject("email", email);
 		} 
 	    else 
 	    {

@@ -20,5 +20,5 @@ public interface UserService {
 
     UserEntity findUserByEmail(String email);
 
-	boolean authenticate(String email, String password);
+	UserEntity authenticate(String email, String password);
 }

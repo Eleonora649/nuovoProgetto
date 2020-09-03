@@ -18,10 +18,6 @@ public interface UserDao
 	
 	UserEntity findByEmail(String email);
 
-	boolean checkLogin(String email, String password);
-
-//	boolean checkLogin(String email, String password);
-
-//	UserEntity validateUser(Login login);
-
+	UserEntity checkLogin(String email);
+	
 }

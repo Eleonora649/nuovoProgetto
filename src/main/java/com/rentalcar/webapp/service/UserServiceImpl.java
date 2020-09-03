@@ -81,11 +81,16 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public boolean authenticate(String email, String password) 
+	public UserEntity authenticate(String email, String password) 
 	{
-		boolean check = userDao.checkLogin(email, password);
+		UserEntity user = userDao.checkLogin(email);;
 
-		return check;
+		if(!(user!=null && user.getEmail().equals(email) && user.getPassword().equals(password)))
+		{
+			user = null;
+		}
+		
+		return user;
 	}
 	
 }

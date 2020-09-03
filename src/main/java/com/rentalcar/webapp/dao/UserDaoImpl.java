@@ -5,8 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.query.Query;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +31,7 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
 	@Override
 	public void deleteUser(int id) 
 	{
-		Query query = getSession().createSQLQuery("delete from User where id_user=:id");
+		Query query = getSession().createSQLQuery("delete from user where id_user=:id");
 		query.setInteger("id", id);
 		query.executeUpdate();
 	}
@@ -60,7 +60,7 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
 	public UserEntity findByEmail(String email) 
 	{
 		UserEntity user = null;
-		user = (UserEntity) getSession().createQuery("SELECT email FROM User WHERE email=:email").setParameter("email", email).uniqueResult();//.getSingleResult();
+		user = (UserEntity) getSession().createQuery("SELECT email FROM user WHERE email=:email").setParameter("email", email).uniqueResult();//.getSingleResult();
 		getSession().get(UserEntity.class, email);
 		if(user!=null) 
 		{
@@ -68,17 +68,14 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
 		}
 		return user;	
 	}
+	
 	@Override
-	public boolean checkLogin(String email, String password)
+	public UserEntity checkLogin(String email)
 	{
-		boolean check = false;
-		UserEntity user = (UserEntity) getSession().createQuery("FROM User WHERE email=:email and password=:password").getSingleResult();
-			
-		if(user!=null) {
-			check=true;
-		}
-		
-		return check;              
+		UserEntity user = (UserEntity) getSession().createQuery("from UserEntity u where u.email=:email")
+							.setParameter("email", email).uniqueResult();
+//		getSessSion().get(UserEntity.class, email);
+		return user;
 	}
 
 }
