@@ -1,8 +1,7 @@
 package com.rentalcar.webapp.service;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService
 	{
 //		UserEntity us = new UserEntity();
     	Role role = roleDao.findByIdRole(2);
-    	Set<Role> roles = new HashSet<Role>();
+    	List<Role> roles = new ArrayList<Role>();
     	roles.add(role);
     	user.setRoles(roles);
     	userDao.saveUser(user);
@@ -46,7 +45,7 @@ public class UserServiceImpl implements UserService
             entity.setEmail(user.getEmail());
             entity.setPassword(user.getPassword());
         }
-		userDao.update(entity);
+		userDao.updateUser(entity);
 	}
 
 	@Override
@@ -68,7 +67,15 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public UserEntity authenticate(String email, String password) {
+	public UserEntity findUserByEmail(String email) 
+	{
+		UserEntity user = userDao.findByEmail(email);
+		return user;
+	}
+	
+	@Override
+	public UserEntity authenticate(String email, String password) 
+	{
 		UserEntity user = userDao.findByEmail(email);
 
 		if (!(user != null && user.getEmail().equals(email) 
@@ -76,5 +83,11 @@ public class UserServiceImpl implements UserService
 			user = null;
 		}
 		return user;
+	}
+	
+	@Override
+	public boolean checkLogin(String email, String password) 
+	{
+		return userDao.checkLogin(email,password);
 	}
 }

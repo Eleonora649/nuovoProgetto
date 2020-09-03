@@ -5,7 +5,8 @@
   <jsp:include page="index.jsp"/>
   
   <br>
-            <form:form modelAttribute="user" method="post">
+            <form:form modelAttribute="user" method="post" >
+            <form:input path="idUser" type="hidden"/>
               <div class="form-group">
                 <table align="center">
                     <tr>

@@ -28,12 +28,11 @@ public abstract class AbstractDao <PK extends Serializable, T>
         return sessionFactory.getCurrentSession();
     }
  
-    @SuppressWarnings("unchecked")
     public T getByKey(final long id) 
     {
         return (T) getSession().get(persistentClass, id);
     }
- 
+    
     public void persist(T entity) 
     {
         getSession().persist(entity);
@@ -59,11 +58,15 @@ public abstract class AbstractDao <PK extends Serializable, T>
 	@SuppressWarnings("unchecked")
     public List<T> findAll()
     {
-    	return getSession().createQuery("from" + persistentClass.getName()).getResultList();
+    	return getSession().createQuery("from " + persistentClass.getName()).getResultList();
     }
     
 	protected Criteria createEntityCriteria()
 	{
         return getSession().createCriteria(persistentClass);
     }
+
+
+	
+
 }

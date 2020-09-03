@@ -2,19 +2,13 @@ package com.rentalcar.webapp.entities;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name="role")
@@ -36,8 +30,7 @@ public class Role implements Serializable
 
 	@ManyToMany(mappedBy = "roles",targetEntity=UserEntity.class,
             cascade=CascadeType.ALL)
-//	@JoinTable(name="user_role", joinColumns={@JoinColumn(name="id_user")}, inverseJoinColumns={@JoinColumn(name="id_role")})
-	private Set<UserEntity> users; 
+	private List<UserEntity> users; 
 
 	public Role() {
 		super();
@@ -67,11 +60,11 @@ public class Role implements Serializable
 		this.nameRole = nameRole;
 	}
 
-	public Set<UserEntity> getUsers() {
+	public List<UserEntity> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Set<UserEntity> users) {
+	public void setUsers(List<UserEntity> users) {
 		this.users = users;
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.rentalcar.webapp.data.CarData;
 
 @Entity
 @Table(name="car")
@@ -37,15 +39,23 @@ public class Car implements Serializable
 	@Column(name="car_license_plate")
 	private String carLicensePlate;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_category")
 	private Category category;
 
-	@OneToMany(mappedBy="car")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="car")
 	private List<Booking> booking;
 
 	public Car() {
 		super();
+	}
+
+	public Car(CarData carData, Category cat) {
+		this.category = cat;
+		this.yearOfRegistration = carData.getYearOfRegistration(); 
+		this.manufacturer = carData.getManufacturer();
+		this.carLicensePlate = carData.getCarLicensePlate();
+		this.carModel = carData.getCarModel();
 	}
 
 	public int getIdCar() {

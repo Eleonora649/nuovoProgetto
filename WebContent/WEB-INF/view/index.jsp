@@ -15,17 +15,17 @@
 					</li>
 				
 					<li class="nav-item">
-						<a class="nav-link" href="carslist">Catalogo</a>
+						<a class="nav-link" href="listcar">Catalogo</a>
 					</li>
 				</ul>
 				
-				<a class="nav-link" href="loginform">Sing in</a></li>
-				<a class="nav-link" href="userregistration">Sign up</a></li>
+					<a class="nav-link" href="loginform">Sign in</a> <br><br>
+					<a class="nav-link" href="userregistration">Sign up</a>
 				
-				<%-- <c:if test="${sessionScope.currentUser !=null }">
+				<c:if test="${sessionScope.currentUser !=null }">
 					<a class="nav-link" href="areapersonale">Area Personale</a>
 					<a class="nav-link" href="logout">Logout</a>
-				</c:if> --%>
+				</c:if>
 			</div>
 			</nav>
 			

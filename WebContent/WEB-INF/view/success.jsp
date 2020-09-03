@@ -1,9 +1,8 @@
 <jsp:include page="header.jsp"/>
 <jsp:include page="index.jsp"/>
 
-    message : ${success}
+   <p align=center> message : <p> 
     <br/>
-    <br/>
-   <a href="<c:url value='/' />"> Successful registration ! </a>
+   <p align=center> Successful registration ! </p>
      
 <jsp:include page="footer.jsp"/>

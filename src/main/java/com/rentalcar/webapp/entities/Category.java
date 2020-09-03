@@ -3,8 +3,10 @@ package com.rentalcar.webapp.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 public class Category implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@Column(name="id_category")
 	private int idCategory;
@@ -22,7 +24,7 @@ public class Category implements Serializable
 	@Column(name="name")
 	private String name;
 
-	@OneToMany(mappedBy="category")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="category")
 	private List<Car> cars;
 
 	public Category() {
@@ -52,6 +54,4 @@ public class Category implements Serializable
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
 	}
-
-	
 }

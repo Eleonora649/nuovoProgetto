@@ -3,7 +3,6 @@ package com.rentalcar.webapp.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,15 +49,14 @@ public class UserEntity implements Serializable
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 	private List<Booking> booking;
 
-	@ManyToMany(targetEntity=Role.class,
-            cascade=CascadeType.ALL) //(cascade = {CascadeType.ALL}) //(fetch = FetchType.LAZY) -> l’oggetto di relazione sarà caricato al momento dell’invocazione del metodo sul quale è applicata l’annotation
+	@ManyToMany(targetEntity=Role.class, cascade=CascadeType.ALL) //(cascade = {CascadeType.ALL}) //(fetch = FetchType.LAZY) -> l’oggetto di relazione sarà caricato al momento dell’invocazione del metodo sul quale è applicata l’annotation
 	@JoinTable(name="user_role", 
 				joinColumns={@JoinColumn(name="id_user")}, 
 				inverseJoinColumns={@JoinColumn(name="id_role")})
-	private Set<Role> roles; 
+	private List<Role> roles; 
 	
 	public UserEntity() {
 
@@ -129,12 +127,12 @@ public class UserEntity implements Serializable
 		this.booking = booking;
 	}
 
-	public Set<Role> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
+
 }

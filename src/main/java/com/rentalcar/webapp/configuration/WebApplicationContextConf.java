@@ -1,6 +1,5 @@
 package com.rentalcar.webapp.configuration;
 
-
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -8,16 +7,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.rentalcar.webapp") //matrice dei nostre packages che utilizzo
+@ComponentScan(basePackages = { "com.rentalcar.webapp" })
 @Import(value = { SecurityConfig.class })
-public class WebApplicationContextConf 
+public class WebApplicationContextConf implements WebMvcConfigurer
 {
-
 	//Bean che ci permette di configurare il ViewResolver (risolutore di viste per identificare la vista reale)
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
@@ -27,7 +26,7 @@ public class WebApplicationContextConf
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-
+	
 	@Bean
 	public MessageSource messageSource()
 	{
@@ -36,4 +35,10 @@ public class WebApplicationContextConf
 		
 		return resource;
 	}
+	
+//	@Override
+//	public void addFormatters(FormatterRegistry registry)
+//	{
+//	    registry.addConverter(new FacConverter());
+//	}
 }

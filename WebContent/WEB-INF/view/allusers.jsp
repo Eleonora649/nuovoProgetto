@@ -16,7 +16,7 @@
             <td>${user.surname}</td>
             <td>${user.dateOfBirth}</td>
             <td>${user.email}</td>
-            <td><a href="<c:url value='/update-${user.idUser}-user'/>">update</a></td>
+            <td><a href="<c:url value='/update/${user.idUser}'/>">update</a></td>
             <td><a href="<c:url value='/delete-${user.idUser}-user'/>">delete</a></td>
             </tr>
         </c:forEach>

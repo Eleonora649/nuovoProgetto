@@ -7,6 +7,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.query.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
+import com.rentalcar.webapp.entities.Login;
 import com.rentalcar.webapp.entities.UserEntity;
 
 @Repository("userDao")
@@ -19,9 +21,9 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
 	}
 
 	@Override
-	public UserEntity update(UserEntity user) 
+	public void updateUser(UserEntity user) 
 	{
-		return update(user);
+		update(user);
 	}
 
 	@Override
@@ -64,4 +66,26 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
 		}
 		return user;	
 	}
+	
+	@Override
+	public boolean checkLogin(String email, String password){
+
+		boolean userFound = false;
+		Query query = getSession().createQuery("FROM User WHERE email=:email and password=:password");
+		query.setParameter(0,email);
+		query.setParameter(1,password);
+		List list = query.list();
+
+		if ((list != null) && (list.size() > 0)) {
+			userFound= true;
+		}
+		return userFound;              
+	}
+	
+	public UserEntity validateUser(Login login) 
+	{
+	    UserEntity user = (UserEntity) getSession().createQuery("select * from user where email='" + login.getEmail() + "' and password='" + login.getPassword() + "'");
+	    return user;
+	    }
+
 }

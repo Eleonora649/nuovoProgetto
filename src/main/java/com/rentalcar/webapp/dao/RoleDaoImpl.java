@@ -29,14 +29,14 @@ public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao
 	@Override
 	public Role findByNameRole(String nameRole) 
 	{
-		Query query = getSession().createQuery("from Role where name_role = :nameRole");
+		Query query = getSession().createQuery("FROM Role WHERE name_role = :nameRole");
 		query.setParameter("nameRole", nameRole);
 		return (Role) query.getSingleResult();
 	}
 
 	@Override
 	public Role findByIdRole(int id) {
-		Query query = getSession().createQuery("from Role where id_role = :id");
+		Query query = getSession().createQuery("FROM Role WHERE id_role = :id");
 		query.setParameter("id", id);
 		return (Role) query.getSingleResult();
 	}

@@ -35,7 +35,8 @@ public class UserController
     public String saveUser(@Valid @ModelAttribute("user") UserEntity user, 
     						BindingResult result, ModelMap model) 
     {
-    	if (result.hasErrors()) {
+    	if (result.hasErrors()) 
+    	{
             return "registration-form";
         }
     	
@@ -43,23 +44,25 @@ public class UserController
     	return "success";
     }
     
-    @RequestMapping(value = {"update-{id}-user"}, method = RequestMethod.GET)
-    public String updateForm(@PathVariable int id, ModelMap model) 
+    @RequestMapping(value = {"update/{id}"}, method = RequestMethod.GET)
+    public ModelAndView updateForm(@PathVariable int id) 
     {
-    	UserEntity user = userService.findUserById(id);
-    	model.addAttribute("user", user);
-    	model.addAttribute("update", true);
-    	return "update-user";
+    	ModelAndView mav = new ModelAndView();
+    	mav.addObject("user", userService.findUserById(id));
+    	mav.setViewName("update-user");
+    	return mav;
     }
     
-    @RequestMapping(value = {"update-{id}-user"}, method = RequestMethod.POST)
-    public String updateUser(@Valid UserEntity user, BindingResult result, ModelMap mode, @PathVariable int id)
+    @RequestMapping(value = {"update/{id}"}, method = RequestMethod.POST)
+    public ModelAndView updateUser(@PathVariable int id, @Valid UserEntity u, BindingResult result)
     {
+    	ModelAndView mav = new ModelAndView();
     	if (result.hasErrors()) {
-    		return "update-user";
+    		mav.setViewName("update-user");
     	}
-    	userService.updateUser(user);
-    	return "success";
+    	userService.updateUser(u);
+    	mav.setViewName("success");
+    	return mav;
     }
 
     @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
@@ -67,6 +70,7 @@ public class UserController
     {
     	List<UserEntity> users = userService.findAllUsers();
     	model.addAttribute("users", users);
+    	//model.addObject("users", userService.findAllUsers());
     	return "allusers";
     }
     

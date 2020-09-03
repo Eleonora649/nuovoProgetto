@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.rentalcar.webapp.entities.Car;
+import com.rentalcar.webapp.entities.Category;
 
 @Repository("carDao")
 public class CarDaoImpl extends AbstractDao<Integer, Car> implements CarDao
@@ -21,8 +22,7 @@ public class CarDaoImpl extends AbstractDao<Integer, Car> implements CarDao
 	@Override
 	public void updateCar(Car car) 
 	{
-		// TODO Auto-generated method stub
-		
+		updateCar(car);
 	}
 
 	@Override
@@ -47,5 +47,5 @@ public class CarDaoImpl extends AbstractDao<Integer, Car> implements CarDao
 		Criteria criteria = createEntityCriteria();
 		return (List<Car>) criteria.list();
 	}
-	
+
 }
