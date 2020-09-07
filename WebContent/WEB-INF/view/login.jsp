@@ -9,9 +9,8 @@
 
 	<br/><h3>Login To Enter</h3>
 
-		<c:if test="${not empty error}"><div class="alert alert-danger">${error}</div></c:if>
-		<c:if test="${not empty message}"><div class="alert alert-danger">${message}</div></c:if>
-		<form:form method="post" action="loginform" modelAttribute="user" class="form-horizontal"> 
+		
+		<form:form method="post" action="do-login" modelAttribute="user" class="form-horizontal">
 			<table>
 				<tr>
 					<td> Email: </td>
@@ -22,7 +21,7 @@
 					<td><input name="password" type="password" class="form-control"/></td>
 				</tr>
 				<tr>
-					<td><button id="register" name="register" class="btn btn-primary">Login</button></td>
+					<td><button id="register" name="register" class="btn btn-primary" value="Login">Login</button></td>
 				</tr>
 			</table>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

@@ -60,8 +60,9 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
 	public UserEntity findByEmail(String email) 
 	{
 		UserEntity user = null;
-		user = (UserEntity) getSession().createQuery("SELECT email FROM user WHERE email=:email").setParameter("email", email).uniqueResult();//.getSingleResult();
-		getSession().get(UserEntity.class, email);
+		user = (UserEntity) getSession().createQuery("FROM UserEntity WHERE email=:email")
+									.setParameter("email", email).uniqueResult();
+//		getSession().get(UserEntity.class, email);
 		if(user!=null) 
 		{
 			Hibernate.initialize(user.getRoles());
@@ -72,10 +73,7 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
 	@Override
 	public UserEntity checkLogin(String email)
 	{
-		UserEntity user = (UserEntity) getSession().createQuery("from UserEntity u where u.email=:email")
-							.setParameter("email", email).uniqueResult();
-//		getSessSion().get(UserEntity.class, email);
-		return user;
+		return findByEmail(email);
 	}
 
 }
