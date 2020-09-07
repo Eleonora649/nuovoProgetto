@@ -3,6 +3,8 @@ package com.rentalcar.webapp.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +25,8 @@ import com.rentalcar.webapp.service.UserService;
 @Controller
 public class LoginController 
 {
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+
 	@Autowired
 	private UserService userService;
 	
@@ -51,9 +55,9 @@ public class LoginController
 		return "login";
 	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(SessionStatus session) {
+	public String logout(HttpSession session) {
 		SecurityContextHolder.getContext().setAuthentication(null);
-		session.setComplete();
+		session.invalidate();
 		return "redirect:/home";
 	}
 
