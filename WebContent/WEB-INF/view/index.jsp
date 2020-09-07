@@ -17,18 +17,21 @@
 			<li class="nav-item active"><a class="nav-link" href="home">
 					Home <span class="sr-only">(current)</span>
 			</a></li>
-
+		
 			<li class="nav-item"><a class="nav-link" href="listcar">Catalogo</a>
 			</li>
 		</ul>
-			<a class="nav-link" href="login">Sign in</a>
-			<br><br>
-					<a class="nav-link" href="userregistration">Sign up</a>
-				<c:if test="${user !=null }">
-					<a class="nav-link" href="areapersonale">Area Personale</a>
-					<a class="nav-link" href="logout">Logout</a>
-				</c:if>
-			</nav>
+			
+			<c:if test="${user == null}">
+				<a class="nav-link" href="login">Sign in</a><br><br>
+				<a class="nav-link" href="userregistration">Sign up</a>
+			</c:if>
+			<c:if test="${user != null}">
+				<a class="nav-link" href="areapersonale">Area Personale</a>
+				<a class="nav-link" href="logout">Logout</a>
+			</c:if>
+	</div>
+</nav>
 			
 <c:url value="logout" var="logoutUrl" />
 <form id="logout" action="${logoutUrl}" method="post" >
